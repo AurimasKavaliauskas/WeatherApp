@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="weatherViewModel"
+            type="com.dz.weather.viewModels.WeatherViewModel" />
+    </data>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{() -> weatherViewModel.refresh()}"
+        app:refreshing="@{weatherViewModel.isRefreshing}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="48dp"
+                android:text="@string/city_list_is_empty"
+                android:textSize="24sp"
+                android:visibility="@{weatherViewModel.addingEnabled ? View.VISIBLE : View.GONE}"
+                tools:visibility="visible" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/city"
+                android:inputType="textNoSuggestions"
+                android:padding="4dp"
+                android:text="@={weatherViewModel.newCityName}"
+                android:textSize="24sp"
+                android:visibility="@{weatherViewModel.addingEnabled ? View.VISIBLE : View.GONE}" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> weatherViewModel.addNewCity(weatherViewModel.newCityName)}"
+                android:padding="4dp"
+                android:text="@string/add_city"
+                android:textSize="24sp"
+                android:visibility="@{weatherViewModel.addingEnabled ? View.VISIBLE : View.GONE}" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adapter="@{weatherViewModel.adapter}"
+                android:visibility="@{weatherViewModel.addingEnabled ? View.GONE : View.VISIBLE}"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:listitem="@layout/city_item" />
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</layout>

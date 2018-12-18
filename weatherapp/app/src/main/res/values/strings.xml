@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="cities">Cities</string>
+    <string name="city_list_is_empty">City list is empty</string>
+    <string name="city">City</string>
+    <string name="add_city">Add city</string>
+    <string name="settings">Settings</string>
+    <string name="celsius">Celsius</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="temp_label">Show temperature in:</string>
+    <string name="weather">Weather</string>
+    <string name="celsius_short">&#xb0;C</string>
+    <string name="fahrenheit_short">&#xb0;F</string>
+</resources>

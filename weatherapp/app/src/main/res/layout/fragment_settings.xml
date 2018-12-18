@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="temperatureCheck"
+            type="com.dz.weather.viewModels.TemperatureViewModel" />
+
+        <variable
+            name="weatherViewModel"
+            type="com.dz.weather.viewModels.WeatherViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Switch
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_height="wrap_content"
+            android:checked="@={temperatureCheck.isCelsius}"
+            android:showText="true"
+            android:text="@string/temp_label"
+            android:textOff="@string/fahrenheit_short"
+            android:textOn="@string/celsius_short" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/city"
+            android:inputType="textNoSuggestions"
+            android:padding="8dp"
+            android:text="@={weatherViewModel.newCityName}"
+            android:textSize="24sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> weatherViewModel.addNewCity(weatherViewModel.newCityName)}"
+            android:padding="8dp"
+            android:text="@string/add_city" />
+
+    </LinearLayout>
+</layout>
